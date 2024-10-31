@@ -3,6 +3,7 @@ return {
   tag = '0.1.8',
   dependencies = {
     'nvim-lua/plenary.nvim',
+    'IllustratedMan-code/telescope-conda.nvim',
     'nvim-telescope/telescope-ui-select.nvim',
     'nvim-telescope/telescope-live-grep-args.nvim',
   },
@@ -54,6 +55,9 @@ return {
               ['<C-i>'] = lga_actions.quote_prompt({ postfix = ' --iglob ' }),
             },
           },
+        },
+        conda = {
+          anaconda_path = '/home/dexter/anaconda3/',
         },
       },
     })

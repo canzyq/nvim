@@ -70,7 +70,7 @@ return {
     })
 
     -- set keymaps
-    vim.keymap.set('n', '<leader>nn', '<CMD>NvimTreeToggle<CR>')
+    vim.keymap.set('n', '<F1>', '<CMD>NvimTreeToggle<CR>')
     vim.keymap.set('n', '<leader>nf', '<CMD>NvimTreeFindFile<CR>')
   end,
 }

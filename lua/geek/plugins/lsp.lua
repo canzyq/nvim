@@ -25,7 +25,7 @@ return {
         'pylsp',
         'lua_ls',
         'rust_analyzer',
-        'tsserver',
+        'ts_ls',
         'cssmodules_ls',
         'emmet_language_server',
         'jdtls',
@@ -86,7 +86,7 @@ return {
       on_attach = on_attach,
     })
 
-    lspconfig.tsserver.setup({
+    lspconfig.ts_ls.setup({
       capabilities = capabilities,
       filetypes = {
         'javascript',
