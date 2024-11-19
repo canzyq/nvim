@@ -10,8 +10,32 @@ return {
     },
     config = function()
       local icons = require('plugins.config.icons').diagnostic_icons
+      local function my_on_attach(bufnr)
+        local api = require('nvim-tree.api')
+
+        local function opts(desc)
+          return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+        end
+
+        -- default mappings
+        api.config.mappings.default_on_attach(bufnr)
+
+        vim.keymap.set('n', 's', api.node.open.vertical, opts('Open: Vertical Split'))
+      end
 
       require('nvim-tree').setup({
+        on_attach = my_on_attach,
+        sort_by = 'case_sensitive',
+        sync_root_with_cwd = true,
+        respect_buf_cwd = true,
+        update_focused_file = {
+          enable = true,
+          update_root = true,
+        },
+        git = {
+          enable = true,
+          ignore = false,
+        },
         view = {
           width = 30,
           side = 'left',
@@ -97,11 +121,11 @@ return {
       },
     },
     keys = {
-      { '<space>ff', '<cmd>Telescope find_files<cr>', desc = 'Find Files' },
-      { '<space>fg', '<cmd>Telescope git_files<cr>', desc = 'Git Files' },
-      { '<space>fo', '<cmd>Telescope oldfiles<cr>', desc = 'Oldfiles' },
-      { '<space>fb', '<cmd>Telescope buffers<cr>', desc = 'Buffers' },
-      { '<space>fl', '<cmd>Telescope live_grep<cr>', desc = 'Live Grep' },
+      { '<space>ff', '<cmd>Telescope find_files<cr>',  desc = 'Find Files' },
+      { '<space>fg', '<cmd>Telescope git_files<cr>',   desc = 'Git Files' },
+      { '<space>fo', '<cmd>Telescope oldfiles<cr>',    desc = 'Oldfiles' },
+      { '<space>fb', '<cmd>Telescope buffers<cr>',     desc = 'Buffers' },
+      { '<space>fl', '<cmd>Telescope live_grep<cr>',   desc = 'Live Grep' },
       { '<space>fd', '<cmd>Telescope diagnostics<cr>', desc = 'Diagnostics' },
     },
     config = function()
